@@ -9,12 +9,8 @@ router.get('/', function(req, res, next) {
     var config = {
     method: 'post',
     url: 'https://api.igdb.com/v4/games',
-    headers: {
-    'Client-ID': 'nedtvnknix5gld0fdp1egtrrmpdgkx',
-    'Authorization': 'Bearer j4lvkzif0jq6os85gb7l8dwyldpckw',
-    'Content-Type': 'text/plain',
-    'Cookie': '__cfduid=d6f76f8488a22b191d3ee9f8819ff73d31614101565'
-    },
+    //inserire parametri segreti
+    ,
     data : data
     };
     axios(config)
