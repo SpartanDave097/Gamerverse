@@ -1,0 +1,172 @@
+doctype html
+head
+  meta(charset='utf-8')
+  meta(name='viewport' content='width=device-width, initial-scale=1, shrink-to-fit=no')
+  meta(name='description' content='')
+  meta(name='author' content='')
+  title GAMERVERSE
+  // Favicon
+  link(rel='icon' type='image/x-icon' href='./images/header-icon.png')
+  // Font Awesome icons (free version)
+  script(src='https://use.fontawesome.com/releases/v5.15.1/js/all.js')
+  // Google fonts
+  link(href='https://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css')
+  link(href='https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic' rel='stylesheet' type='text/css')
+  
+  // CSS BOOTSTRAP
+  link(href='https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css' rel='stylesheet' type='text/css')
+  link(href='./stylesheets/style.css' rel='stylesheet' type='text/css')
+  // Custom CSS
+  link(href='./stylesheets/index.css' rel='stylesheet' type='text/css')
+  // JavaScript Bundle with Popper BOOTSTRAP
+  script(src='https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js')
+  // Custom JS
+  script(type='text/javascript' src='./javascripts/scripts.js')
+  script(type='text/javascript' src='./javascripts/index.js')
+  // Facebook Login Js
+  script(type='text/javascript' src='./javascripts/facebook.js')
+  // Load the JS SDK asynchronously
+  script(async='' defer='' crossorigin='anonymous' src='https://connect.facebook.net/en_US/sdk.js')
+  // Google Login Js
+  script(type='text/javascript' src='./javascripts/google.js')
+  // Load the Google Platform Library
+  script(src='https://apis.google.com/js/platform.js' async='' defer='')
+  // Bootstrap core JS
+  script(src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js')
+  script(src='https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js')
+  // Third party plugin JS
+  script(src='https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js')
+  // Contact form JS
+// Navigation
+nav#mainNav.navbar.navbar-expand-lg.bg-secondary.text-uppercase.fixed-top
+  .container
+    img.img-head(src='./images/header-icon.png' alt='')
+    a.navbar-brand.js-scroll-trigger(href='/') GAMERVERSE
+    button.navbar-toggler.navbar-toggler-right.text-uppercase.font-weight-bold.bg-primary.text-white.rounded(type='button' data-toggle='collapse' data-target='#navbarResponsive' aria-controls='navbarResponsive' aria-expanded='false' aria-label='Toggle navigation')
+      | Menu
+      i.fas.fa-bars
+    li.nav-item.dropdown
+      a#navbarDropdown.nav-link.dropdown-toggle(href='#' role='button' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false')
+        | Menù
+      .dropdown-menu(aria-labelledby='navbarDropdown')
+        a.dropdown-item(href='/')  Homepage
+        a.dropdown-item(href='/facebook')  Facebook 
+        a.dropdown-item(href='/google')  Google 
+        .dropdown-divider
+        a.dropdown-item(href='/signup') Registrati
+// Portfolio Section
+section#portfolio.page-section.portfolio
+  .container
+    .search-custom-bar
+      //form.p-2.rounded.shadow-sm.bg-white(action='#')
+        .input-group.cc_cursor
+          input.form-control.border-0.mr-2(type='search' placeholder='Cerca un gioco: ')
+          .input-group-append.rounded
+            button.btn.btn-primary.rounded.cc_pointer(type='submit')
+              i.fas.fa-search.cc_pointer
+    // Portfolio Grid Items
+    .row.justify-content-center
+      // Portfolio Item 1
+      .col-md-6.col-lg-4.mb-5
+        .portfolio-item.mx-auto(data-toggle='modal' data-target='#portfolioModal1')
+          .portfolio-item-caption.d-flex.align-items-center.justify-content-center.h-100.w-100
+            .portfolio-item-caption-content.text-center.text-white
+              i.fas.fa-plus.fa-3x
+          img.img-fluid(src='./images/Red-Dead-Redemption-2.jpg' alt='')
+      // Portfolio Item 2
+      .col-md-6.col-lg-4.mb-5
+        .portfolio-item.mx-auto(data-toggle='modal' data-target='#portfolioModal2')
+          .portfolio-item-caption.d-flex.align-items-center.justify-content-center.h-100.w-100
+            .portfolio-item-caption-content.text-center.text-white
+              i.fas.fa-plus.fa-3x
+          img.img-fluid(src='./images/79496-1.jpg' alt='')
+      // Portfolio Item 3
+      .col-md-6.col-lg-4.mb-5
+        .portfolio-item.mx-auto(data-toggle='modal' data-target='#portfolioModal3')
+          .portfolio-item-caption.d-flex.align-items-center.justify-content-center.h-100.w-100
+            .portfolio-item-caption-content.text-center.text-white
+              i.fas.fa-plus.fa-3x
+          img.img-fluid(src='./images/watch-dogs-immagine-1_kgwc.jpg' alt='')
+#fb-root
+script(async='' defer='' crossorigin='anonymous' src='https://connect.facebook.net/it_IT/sdk.js#xfbml=1&version=v9.0&appId=2121529361321976&autoLogAppEvents=1' nonce='8USgjNY9')
+meta(name='google-signin-client_id' content='804910218147-rg2qm78gfi0e5o1ddj99cduk88m6s2gs.apps.googleusercontent.com')
+// Scroll to Top Button (Only visible on small and extra-small screen sizes)
+.scroll-to-top.d-lg-none.position-fixed
+  a.js-scroll-trigger.d-block.text-center.text-white.rounded(href='#page-top')
+    i.fa.fa-chevron-up
+// Portfolio Modals
+// Portfolio Modal 1
+#portfolioModal1.portfolio-modal.modal.fade(tabindex='-1' role='dialog' aria-labelledby='portfolioModal1Label' aria-hidden='true')
+  .modal-dialog.modal-xl(role='document')
+    .modal-content
+      .modal-body.text-center
+        .container
+          .row.justify-content-center
+            .col-lg-8
+              // Portfolio Modal - Title
+              h2#portfolioModal1Label.portfolio-modal-title.text-secondary.text-uppercase.mb-0 Red Dead Redemption II
+              // Icon Divider
+              .divider-custom
+                .divider-custom-line
+                .divider-custom-line
+                .divider-custom-line
+              // Portfolio Modal - Image
+              img.img-fluid.rounded.mb-5(src='./images/Red-Dead-Redemption-2.jpg' alt='')
+              // Portfolio Modal - Text
+              p.mb-5
+                | Lorem ipsum dolor sit amet, consectetur adipisicing elit. Mollitia neque assumenda ipsam nihil, molestias magnam, recusandae quos quis inventore quisquam velit asperiores, vitae? Reprehenderit soluta, eos quod consequuntur itaque. Nam.
+              button.btn.btn-primary(data-dismiss='modal')
+                i.fas.fa-times.fa-fw
+                |                                         Close Window
+// Portfolio Modal 2
+#portfolioModal2.portfolio-modal.modal.fade(tabindex='-1' role='dialog' aria-labelledby='portfolioModal2Label' aria-hidden='true')
+  .modal-dialog.modal-xl(role='document')
+    .modal-content
+      button.close(type='button' data-dismiss='modal' aria-label='Close')
+        span(aria-hidden='true')
+          i.fas.fa-times
+      .modal-body.text-center
+        .container
+          .row.justify-content-center
+            .col-lg-8
+              // Portfolio Modal - Title
+              h2#portfolioModal2Label.portfolio-modal-title.text-secondary.text-uppercase.mb-0 Assassin&apos;s Creed Valhalla
+              // Icon Divider
+              .divider-custom
+                .divider-custom-line
+                .divider-custom-line
+                .divider-custom-line
+              // Portfolio Modal - Image
+              img.img-fluid.rounded.mb-5(src='./images/79496-1.jpg' alt='')
+              // Portfolio Modal - Text
+              p.mb-5
+                | Lorem ipsum dolor sit amet, consectetur adipisicing elit. Mollitia neque assumenda ipsam nihil, molestias magnam, recusandae quos quis inventore quisquam velit asperiores, vitae? Reprehenderit soluta, eos quod consequuntur itaque. Nam.
+              button.btn.btn-primary(data-dismiss='modal')
+                i.fas.fa-times.fa-fw
+                |                                         Close Window
+// Portfolio Modal 3
+#portfolioModal3.portfolio-modal.modal.fade(tabindex='-1' role='dialog' aria-labelledby='portfolioModal3Label' aria-hidden='true')
+  .modal-dialog.modal-xl(role='document')
+    .modal-content
+      button.close(type='button' data-dismiss='modal' aria-label='Close')
+        span(aria-hidden='true')
+          i.fas.fa-times
+      .modal-body.text-center
+        .container
+          .row.justify-content-center
+            .col-lg-8
+              // Portfolio Modal - Title
+              h2#portfolioModal3Label.portfolio-modal-title.text-secondary.text-uppercase.mb-0 Watch Dogs Legion
+              // Icon Divider
+              .divider-custom
+                .divider-custom-line
+                .divider-custom-line
+                .divider-custom-line
+              // Portfolio Modal - Image
+              img.img-fluid.rounded.mb-5(src='./images/watch-dogs-immagine-1_kgwc.jpg' alt='')
+              // Portfolio Modal - Text
+              p.mb-5
+                | Lorem ipsum dolor sit amet, consectetur adipisicing elit. Mollitia neque assumenda ipsam nihil, molestias magnam, recusandae quos quis inventore quisquam velit asperiores, vitae? Reprehenderit soluta, eos quod consequuntur itaque. Nam.
+              button.btn.btn-primary(data-dismiss='modal')
+                i.fas.fa-times.fa-fw
+                |    
