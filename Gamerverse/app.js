@@ -1,17 +1,19 @@
 var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
-const mongoose = require('mongoose');
+const mongoose = require('mongoose');            //dependencies for database
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
-const dotenv = require('dotenv');
-const passport = require('passport');
+var socket = require('socket.io');              //depedencies for WebSocket
+const dotenv = require('dotenv'); 
+const passport = require('passport');           //dependecies for authentication 
 const connectDB = require('./config/db');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var authGoogle = require('./routes/auth');
 var resultsRouter = require('./routes/results');
+var chatRouter = require('./routes/chat');
 
 var app = express();
 
@@ -42,6 +44,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
 app.use('/results', resultsRouter);
 app.use('/users', usersRouter);
+app.use('/chat', chatRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
