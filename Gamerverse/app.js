@@ -5,18 +5,21 @@ const mongoose = require('mongoose');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 const dotenv = require('dotenv');
+const passport = require('passport');
 const connectDB = require('./config/db');
-
-
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
+var authGoogle = require('./routes/auth');
 var resultsRouter = require('./routes/results');
 
 var app = express();
 
 // Load config
 dotenv.config({ path: './config/config.env' })
+
+// Passport config
+require('./config/passport')(passport)
 
 // Connection DB
 connectDB()
