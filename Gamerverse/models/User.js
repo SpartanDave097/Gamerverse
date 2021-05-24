@@ -24,4 +24,17 @@ const UserSchema = new mongoose.Schema({
     }
 })
 
+const UserSchemaT = new mongoose.Schema({
+    twitterId: {
+        type: String,
+        required: true,
+    },
+    displayName : {
+        type: String,
+        required: true,
+    }
+})
+
+
 module.exports = mongoose.model('User', UserSchema)
+module.exports = mongoose.model('UserT', UserSchemaT)

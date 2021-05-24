@@ -7,6 +7,7 @@ var logger = require('morgan');
 var socket = require('socket.io');              //depedencies for WebSocket
 const dotenv = require('dotenv'); 
 const passport = require('passport');           //dependecies for authentication 
+const session = require('express-session');
 const connectDB = require('./config/db');
 
 var indexRouter = require('./routes/index');
@@ -22,6 +23,7 @@ dotenv.config({ path: './config/config.env' })
 
 // Passport config
 require('./config/passport')(passport)
+require('./config/passport1')(passport)
 
 // Connection DB
 connectDB()
@@ -30,6 +32,19 @@ connectDB()
 if(process.env.NODE_ENV === 'development') {
   app.use(morgan('dev'))
 }
+
+// Session
+app.use(session({
+  secret: 'key',
+  resave: false,
+  saveUninitialized: false
+
+}))
+
+// Passport middleware
+app.use(require('express-session')({ secret: process.env.SESSION_SECRET, resave: true, saveUninitialized: true }));
+app.use(passport.initialize());
+app.use(passport.session());
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));

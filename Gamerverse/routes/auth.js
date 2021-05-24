@@ -18,5 +18,18 @@ router.get('/logout', (req, res) => {
     res.redirect('/')
 })
 
+// Auth with Twitter 
+router.get('/twitter', passport.authenticate('twitter'));
+
+router.get('/logout', (req, res, next) => {
+  req.logout();
+  res.redirect('/');
+});
+
+// Twitter auth callback
+router.get('/twitter/callback', 
+  passport.authenticate('twitter', { failureRedirect: '/' }), (req, res, next) => {
+    res.redirect('/');
+});
 
 module.exports = router
