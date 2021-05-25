@@ -1,5 +1,6 @@
 const mongoose = require('mongoose')
 
+// Google UserSchema
 const UserSchema = new mongoose.Schema({
     googleId: {
         type: String,
@@ -24,17 +25,5 @@ const UserSchema = new mongoose.Schema({
     }
 })
 
-const UserSchemaT = new mongoose.Schema({
-    twitterId: {
-        type: String,
-        required: true,
-    },
-    displayName : {
-        type: String,
-        required: true,
-    }
-})
-
-
+// Create the model with the schema defined 
 module.exports = mongoose.model('User', UserSchema)
-module.exports = mongoose.model('UserT', UserSchemaT)

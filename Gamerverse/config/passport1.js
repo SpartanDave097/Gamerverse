@@ -1,6 +1,6 @@
 const TwitterStrategy = require('passport-twitter').Strategy
 const mongoose = require('mongoose')
-const UserT = require('../models/User')
+const UserT = require('../models/Twitter')
 
 
 // About access with Twitter
