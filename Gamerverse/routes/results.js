@@ -10,8 +10,6 @@ router.get('/', function(req, res, next) {
     let rawdata = req.query.games;
     //console.log(rawdata);
     var initialData = "";
-    var coverData = "";
-    var ids = "";
 
     initialData = axiosData(rawdata);
 
@@ -20,31 +18,15 @@ router.get('/', function(req, res, next) {
     })
     .then(function(newResult) {
       //console.log(initialData);
-      ids = getIds(initialData);
-    })
-    .then(function(newResult) {
-      coverData = axiosCoverById(ids);
 
-      coverData.then(function(result) {
-        coverData = result;
-        //console.log(coverData);
-      })
-      .then(function(newResult) {
-        initialData = addCover(initialData,coverData);
-      })
-      .then(function(newResult) {
-        //console.log(rawdata);
-
-        res.render('results', { 
-          title: 'Ecco qua',
-          fileJson1: initialData,
-          giocoCercato: rawdata
-      });
-
-
-        });
+      res.render('results', { 
+        title: 'Ecco qua',
+        fileJson1: initialData,
+        giocoCercato: rawdata
     });
   });
+});
+
 
 
 module.exports = router;
@@ -53,7 +35,7 @@ module.exports = router;
 
 function axiosData(incomingdata){
 
-  var data = 'search "' + incomingdata + '" ; fields id,name,first_release_date,storyline,summary;';
+  var data = 'search "' + incomingdata + '" ; fields id,name,first_release_date,cover.image_id,cover.image_id,aggregated_rating,genres.name,dlcs.cover.image_id,dlcs.name,platforms.name, summary; limit 20; where version_parent = null & parent_game = null & cover != null;';
   var config = {
   method: 'post',
   url: 'https://api.igdb.com/v4/games',
@@ -76,62 +58,4 @@ function axiosData(incomingdata){
   });
 
   return text;
-}
-
-function axiosCoverById(incomingdata){
-
-  var data = 'where game = (' + incomingdata + '); fields game,height,image_id,url,width;';
-  var config = {
-  method: 'post',
-  url: 'https://api.igdb.com/v4/covers',
-  headers: {
-  },
-  data : data
-  };
-
-  var text = axios(config)
-  .then(response => {
-    var data = response.data;
-    return data;
-  })
-  .catch(function (error) {
-  console.log(error);
-  });
-
-  text.then(function(result) {
-    text = result;
-  });
-
-  return text;
-}
-
-//Funge!!!!
-function addCover(initialData,coverData){
-
-  var data = initialData;
-  var id;
-  var i = 0;
-  var a = 0;
-  for(i;i<initialData.length;i++){
-    id = initialData[i].id;
-    for(a=0;a<coverData.length;a++){
-      if (id == coverData[a].game)
-        data[i].coverId = coverData[a].image_id;
-      else
-        continue;
-    }
-  }
-
-  return data;  
-}
-
-function getIds(JSONdata){
-  var ids = JSONdata[0].id;
-  var i = 1;
-  for(i;i<JSONdata.length;i++){
-    ids = ids + ", " + JSONdata[i].id;
-  }
-
-  //console.log(ids);
-  return ids;
 }
