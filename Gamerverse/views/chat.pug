@@ -62,7 +62,7 @@ section#portfolio.page-section.portfolio
               $('form').submit(function() {
               const name = $('#name').val();
               const message = $('#message').val();
-              socket.emit('chatter', ${name} : ${message});  //This method is responsible for sending messages
+              socket.emit('chatter', `${name} : ${message}`); //This method is responsible for sending messages
               $('#message').val('');
               return false;
               });

@@ -77,4 +77,20 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
+//*** WebSocket creation to build chat
+const server = app.listen(8000, () => {
+  console.log("Listening on port 8000");
+});
+
+const io = socket(server);
+
+//*** Chat ServerSide
+io.on('connection', (socket) => {
+  console.log('A user connected')
+  socket.on('chatter', (message) => {
+    console.log('chatter: ', message)
+    io.emit('chatter', message)
+  });
+});
+
 module.exports = app;
