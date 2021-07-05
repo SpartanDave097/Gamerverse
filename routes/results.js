@@ -35,12 +35,13 @@ module.exports = router;
 
 function axiosData(incomingdata){
 
-  var data = 'search "' + incomingdata + '" ; fields id,name,first_release_date,cover.image_id,cover.image_id,aggregated_rating,genres.name,dlcs.cover.image_id,dlcs.name,platforms.name, summary; limit 20; where version_parent = null & parent_game = null & cover != null;';
+  var data = 'search "' + incomingdata + '" ; fields id,name,first_release_date,cover.image_id,cover.height,aggregated_rating,genres.name,dlcs.cover.image_id,dlcs.name, platforms.name, summary, websites.url, websites.category, videos.video_id, videos.name; limit 20; where version_parent = null & parent_game = null & cover != null;';
   var config = {
   method: 'post',
   url: 'https://api.igdb.com/v4/games',
   headers: {
-  },
+      // Robe
+    },
   data : data
   };
 

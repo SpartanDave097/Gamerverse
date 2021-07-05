@@ -106,9 +106,12 @@
     max-width: 150px;
     margin: auto;
     padding: 0 5px 0 5px !important;
+    outline: none;
   }
+
+
   
-.container-chat button:hover {
+  .container-chat button:hover {
     color: #1abc9c;
     background: #fff;
   }
@@ -135,6 +138,7 @@
     border-radius: 2rem;
     margin: auto;
     width: auto;
+    outline: none;
   }
   
   .container-chat .input {

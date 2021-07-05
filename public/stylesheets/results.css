@@ -1,0 +1,31 @@
+.justify-content-center {
+    justify-content: center !important;
+    margin-top: 0px;
+}
+
+.portfolio-modal .portfolio-modal-title {
+    font-size: 2.25rem;
+    line-height: 2rem;
+    margin-top: 0%;
+}
+
+.mb-5, .my-5 {
+    margin-bottom: 0px !important;
+    padding: 0px 0px 0px 0px;
+}
+
+.portfolio .portfolio-item {
+    margin: 5% 5% 5% 5% !important; 
+    cursor: pointer;
+    position: relative;
+    display: block;
+    max-width: 25rem;
+    border-radius: 0.5rem;
+    overflow: hidden;
+}
+
+.search-custom-bar {
+    padding: 0 10% 0 10%;
+    margin: 0% 0% 5% 0% !important;
+}
+

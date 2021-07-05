@@ -5,6 +5,8 @@ head
   meta(name='description' content='')
   meta(name='author' content='')
   title GAMERVERSE
+  // Script jquery iniziale
+  script(src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js")
   // Favicon
   link(rel='icon' type='image/x-icon' href='./images/header-icon.png')
   // Font Awesome icons (free version)
@@ -35,9 +37,21 @@ head
   script(src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js')
   script(src='https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js')
   // Third party plugin JS
-  script(src='https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js')
+  //script(src='https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js')
 
-  // Contact form JS
+  // Youtube JS
+  
+  script.
+    function youtubetrigger(num){
+      var tube = document.getElementById("youtube"+num);
+      if(tube.style.display == "none" || tube.style.display == "null")
+        tube.style.display = "block" ;
+      else
+        tube.style.display = "none" ;
+        //var video = document.getElementsByClassNames("video-stream");
+        //video.pause();
+    }
+    
 // Navigation
 nav#mainNav.navbar.navbar-expand-lg.bg-secondary.text-uppercase.fixed-top
   .container
@@ -50,13 +64,13 @@ nav#mainNav.navbar.navbar-expand-lg.bg-secondary.text-uppercase.fixed-top
       a#navbarDropdown.nav-link.dropdown-toggle(href='#' role='button' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false')
         | Menù
       .dropdown-menu(aria-labelledby='navbarDropdown')
-        a.dropdown-item(href='/')  Homepage
-        a.dropdown-item(href='/google')  Google 
+        a.dropdown-item(href='/auth/google')  Google 
+        a.dropdown-item(href='/auth/twitter')  Twitter 
         .dropdown-divider
         a.dropdown-item(href='/signup') Registrati
+        .dropdown-divider
+        a.dropdown-item(href='/chat') Chat 
 // Portfolio Section
-
-
 
 //mixin per creare codice
 mixin portfolioItem(immagineGioco,c)
@@ -71,7 +85,9 @@ mixin portfolioItem(immagineGioco,c)
 //Modal
 mixin portfolioModal(gioco,d)
   - var portf = "portfolioModal" + d ;
+  - var youtuber = "portfolioModal" + d ;
   - var image = "//images.igdb.com/igdb/image/upload/t_1080p/" + gioco.cover.image_id + ".jpg"; 
+  - var linTweet = "https://twitter.com/"
   .portfolio-modal.modal.fade( id ="" + portf tabindex='-1' role='dialog'  aria-labelledby="" + portf + "label" aria-hidden='true')
     .modal-dialog.modal-xl(role='document')
       .modal-content
@@ -79,18 +95,40 @@ mixin portfolioModal(gioco,d)
           span(aria-hidden='true')
             i.fas.fa-times
         .modal-body.text-center
-          .container
+          .container-modal
             .row.justify-content-center
+              h2.portfolio-modal-title.text-secondary.text-uppercase.mb-0(id = "" + portf + "label") #{gioco.name} 
+              
+              // Portfolio Modal - Title
+              if(gioco.videos != null)
+                  //bottone video
+                  button.btn.btn-danger.youtubebtn(onclick="youtubetrigger("+d+")")
+                    i.fas.fa-times.fa-fw
+                    |                                         Video del gioco
+                
+
+              // Icon Divider
+              .divider-custom
+                .divider-custom-line
+                .divider-custom-line
+                .divider-custom-line
+
               .col-lg-8
-                // Portfolio Modal - Title
-                h2.portfolio-modal-title.text-secondary.text-uppercase.mb-0(id = "" + portf + "label") #{gioco.name} 
-                // Icon Divider
-                .divider-custom
-                  .divider-custom-line
-                  .divider-custom-line
-                  .divider-custom-line
                 // Portfolio Modal - Image
-                img.img-fluid.rounded.mb-5.imglat(src=''+image alt='' )
+                if(gioco.videos != null)
+                  - var found = false;
+                  each video in gioco.videos
+                    if(video.name == "Trailer")
+                      - found = true;
+                      // Portfolio Modal - Youtube
+                      iframe.youtubevideo(id="youtube"+d width='420' height='315' src='https://www.youtube.com/embed/'+video.video_id style="display:none;")
+                  if(found==false)
+                    //bottone video
+                    iframe.youtubevideo(id="youtube"+d width='420' height='315' src='https://www.youtube.com/embed/'+gioco.videos[0].video_id style="display:none;")
+                
+
+
+                img.img-fluid.rounded.mb-5.imglat(src=''+ image alt='' id = "" + portf + "image" style="position: relative;")
                 // Portfolio Modal - Text
                 .text-room
                   h5        Data di uscita:
@@ -123,6 +161,15 @@ mixin portfolioModal(gioco,d)
                   h5        Descrizione:
                   p.mb-5.desc
                     |       #{gioco.summary}
+                
+                if(gioco.websites != null)
+                  each website in gioco.websites
+                    - if(website.category == 5)
+                      - linTweet += website.url;
+                      .leftcontainer
+                        a.twitter-timeline(href=linTweet) "Tweets by" #{gioco.name}
+                          script(async='' src='https://platform.twitter.com/widgets.js' charset='utf-8')
+                  
               
               if gioco.dlcs
                 h5.esptitl        Espansioni:
@@ -177,10 +224,54 @@ each item in fileJson1
   - b++
 
 
-#fb-root
-script(async='' defer='' crossorigin='anonymous' src='https://connect.facebook.net/it_IT/sdk.js#xfbml=1&version=v9.0&appId=2121529361321976&autoLogAppEvents=1' nonce='8USgjNY9')
-meta(name='google-signin-client_id' content='804910218147-rg2qm78gfi0e5o1ddj99cduk88m6s2gs.apps.googleusercontent.com')
 // Scroll to Top Button (Only visible on small and extra-small screen sizes)
 .scroll-to-top.d-lg-none.position-fixed
   a.js-scroll-trigger.d-block.text-center.text-white.rounded(href='#page-top')
     i.fa.fa-chevron-up
+
+// Footer
+footer.bg-white
+  .container.py-5
+    .row.py-4
+      .col-lg-4.col-md-6.mb-4.mb-lg-0
+        h6.text-uppercase.font-weight-bold.mb-4 Gamerverse
+        p.font-italic.text-muted
+          | Siamo un portale dedicato alla ricerca di videogiochi 
+          |  ed è disponibile una chat per gli altri utenti connessi
+      .col-lg-2.col-md-6.mb-4.mb-lg-0
+        h6.text-uppercase.font-weight-bold.mb-4 Menù
+        ul.list-unstyled.mb-0
+          li.mb-2
+            a.text-muted(href='#') Homepage
+          li.mb-2
+            a.text-muted(href='signup') Registrati
+          li.mb-2
+            a.text-muted(href='/chat') Chat
+      .col-lg-2.col-md-6.mb-4.mb-lg-0
+        h6.text-uppercase.font-weight-bold.mb-4 Servizi
+        ul.list-unstyled.mb-0
+          li.mb-2 
+            i.fas.fa-search
+            a.text-muted  Ricerca
+          li.mb-2 
+            i.fas.fa-info-circle
+            a.text-muted  Informazioni
+          li.mb-2 
+            i.fas.fa-puzzle-piece
+            a.text-muted  Espansioni
+          li.mb-2
+            i.fas.fa-laptop
+            a.text-muted  Piattaforme
+      .col-lg-4.col-md-6.mb-lg-0
+        h6.text-uppercase.font-weight-bold.mb-4 Newsletter
+        p.text-muted.mb-4 Iscriviti alla newsletter per rimaner sempre aggiornato su Gamerverse.
+        .p-1.rounded.border
+          .input-group
+            input.form-control.border-0.shadow-0(type='email' placeholder='Enter your email address' aria-describedby='button-addon1')
+            .input-group-append
+              button#button-addon1.btn.btn-link(type='submit')
+                i.fa.fa-paper-plane
+  // Copyrights
+  .bg-secondary.py-2
+    .container.text-center
+      p.text-light.font-weight.mb-0.py-2 &copy; 2021 Gamerverse

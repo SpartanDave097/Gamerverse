@@ -33,7 +33,19 @@ head
   script(src='https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js')
   // Third party plugin JS
   script(src='https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js')
-  // Contact form JS
+  // Youtube JS
+  
+  script.
+    function youtubetrigger(num){
+      var tube = document.getElementById("youtube"+num);
+      if(tube.style.display == "none" || tube.style.display == "null")
+        tube.style.display = "block" ;
+      else
+        tube.style.display = "none" ;
+        //var video = document.getElementsByClassName("html5-video-player");
+        //video.pauseVideo(true);
+    }
+  
 // Navigation
 nav#mainNav.navbar.navbar-expand-lg.bg-secondary.text-uppercase.fixed-top
   .container
@@ -57,15 +69,14 @@ nav#mainNav.navbar.navbar-expand-lg.bg-secondary.text-uppercase.fixed-top
 section#portfolio.page-section.portfolio
   .container
     // Scritta in movimento
-    .gvexpl
-      .row.justify-content-center
-        .box
-          | Gamerverse ti mostra 
-          .word
-            span  giochi
-            span  espansioni
-            span  piattaforme
-            span  informazioni
+    .row.justify-content-center
+      .box
+        | Gamerverse ti mostra 
+        .word
+          span  giochi
+          span  espansioni
+          span  piattaforme
+          span  informazioni
     .search-custom-bar
       form.p-2.rounded.shadow-sm.bg-white(action='/results' method='get')
         .input-group.cc_cursor
@@ -107,19 +118,31 @@ meta(name='google-signin-client_id' content='804910218147-rg2qm78gfi0e5o1ddj99cd
       button.close(type='button' data-dismiss='modal' aria-label='Close')
         span(aria-hidden='true')
           i.fas.fa-times
+
       .modal-body.text-center
-        .container
+        .container-modal
           .row.justify-content-center
+            // Portfolio Modal - Title
+            h2#portfolioModal1Label.portfolio-modal-title.text-secondary.text-uppercase.mb-0 Red Dead Redemption II
+
+            //bottone video
+            button.btn.btn-danger.youtubebtn(onclick="youtubetrigger(1)")
+              i.fas.fa-times.fa-fw
+              |                                         Video del gioco
+
+            // Icon Divider
+            .divider-custom
+              .divider-custom-line
+              .divider-custom-line
+              .divider-custom-line
+            
             .col-lg-8
-              // Portfolio Modal - Title
-              h2#portfolioModal1Label.portfolio-modal-title.text-secondary.text-uppercase.mb-0 Red Dead Redemption II
-              // Icon Divider
-              .divider-custom
-                .divider-custom-line
-                .divider-custom-line
-                .divider-custom-line
-              // Portfolio Modal - Image
-              img.img-fluid.rounded.mb-5.imglat(src='//images.igdb.com/igdb/image/upload/t_1080p/co1q1f.jpg' alt='')
+              // Portfolio Modal - Youtube
+              iframe.youtubevideo(id="youtube1" width='420' height='315' src='https://www.youtube.com/embed/HVRzx17WHVk' style="display:none;")
+              
+              // Portfolio Modal - Image          
+              img.img-fluid.rounded.mb-5.imglat(src='//images.igdb.com/igdb/image/upload/t_1080p/co1q1f.jpg' alt='' )
+
               // Portfolio Modal - Text
               .text-room
                 h5        Data di uscita: 
@@ -136,7 +159,12 @@ meta(name='google-signin-client_id' content='804910218147-rg2qm78gfi0e5o1ddj99cd
                   |         Red Dead Redemption 2 is an epic tale of life in America’s unforgiving heartland.
                   |         The game's vast and atmospheric world will also provide the foundation for a brand new online multiplayer
                   |         experience.
+              .leftcontainer
+                a.twitter-timeline(href='https://twitter.com/RockstarRDR?ref_src=twsrc%5Etfw') Tweets by RockstarRDR
+                  script(async='' src='https://platform.twitter.com/widgets.js' charset='utf-8')
+            
             h5           Nessuna espansione
+            
             //bottone chiusura
             button.btn.btn-primary(data-dismiss='modal')
               i.fas.fa-times.fa-fw
@@ -149,16 +177,25 @@ meta(name='google-signin-client_id' content='804910218147-rg2qm78gfi0e5o1ddj99cd
         span(aria-hidden='true')
           i.fas.fa-times
       .modal-body.text-center
-        .container
+        .container-modal
           .row.justify-content-center
+            // Portfolio Modal - Title
+            h2#portfolioModal2Label.portfolio-modal-title.text-secondary.text-uppercase.mb-0 Assassin's Creed Valhalla
+
+            //bottone video
+            button.btn.btn-danger.youtubebtn(onclick="youtubetrigger(2)")
+              i.fas.fa-times.fa-fw
+              |                                         Video del gioco
+
+            // Icon Divider
+            .divider-custom
+              .divider-custom-line
+              .divider-custom-line
+              .divider-custom-line
             .col-lg-8
-              // Portfolio Modal - Title
-              h2#portfolioModal2Label.portfolio-modal-title.text-secondary.text-uppercase.mb-0 Assassin's Creed Valhalla
-              // Icon Divider
-              .divider-custom
-                .divider-custom-line
-                .divider-custom-line
-                .divider-custom-line
+              // Portfolio Modal - Youtube
+              iframe.youtubevideo(id="youtube2" width='420' height='315' src='https://www.youtube.com/embed/gncCKXqjtaE' style="display:none;")
+
               // Portfolio Modal - Image
               img.img-fluid.rounded.mb-5.imglat(src='//images.igdb.com/igdb/image/upload/t_1080p/co2ed3.jpg' alt='')
               // Portfolio Modal - Text
@@ -176,6 +213,9 @@ meta(name='google-signin-client_id' content='804910218147-rg2qm78gfi0e5o1ddj99cd
                 
                 p.mb-5.desc
                   |                 In Assassin's Creed Valhalla, become Eivor, a legendary Viking raider on a quest for glory. Explore a dynamic and beautiful open world set against the brutal backdrop of England’s Dark Ages. Raid your enemies, grow your settlement, and build your political power in the quest to earn a place among the gods in Valhalla.
+              .leftcontainer
+                a.twitter-timeline(href='https://twitter.com/assassinscreed?ref_src=twsrc%5Etfw') Tweets by assassinscreed
+                  script(async='' src='https://platform.twitter.com/widgets.js' charset='utf-8')
             h5           Nessuna espansione
             //bottone chiusura
             button.btn.btn-primary(data-dismiss='modal')
@@ -189,16 +229,24 @@ meta(name='google-signin-client_id' content='804910218147-rg2qm78gfi0e5o1ddj99cd
         span(aria-hidden='true')
           i.fas.fa-times
       .modal-body.text-center
-        .container
+        .container-modal
           .row.justify-content-center
+            // Portfolio Modal - Title
+            h2#portfolioModal3Label.portfolio-modal-title.text-secondary.text-uppercase.mb-0 Watch Dogs Legion
+
+            //bottone video
+            button.btn.btn-danger.youtubebtn(onclick="youtubetrigger(3)")
+              i.fas.fa-times.fa-fw
+              |                                         Video del gioco
+
+            // Icon Divider
+            .divider-custom
+              .divider-custom-line
+              .divider-custom-line
+              .divider-custom-line
             .col-lg-8
-              // Portfolio Modal - Title
-              h2#portfolioModal3Label.portfolio-modal-title.text-secondary.text-uppercase.mb-0 Watch Dogs Legion
-              // Icon Divider
-              .divider-custom
-                .divider-custom-line
-                .divider-custom-line
-                .divider-custom-line
+              // Portfolio Modal - Youtube
+              iframe.youtubevideo(id="youtube3" width='420' height='315' src='https://www.youtube.com/embed/dReKm3qnlEU' style="display:none;")
               // Portfolio Modal - Image
               img.img-fluid.rounded.mb-5.imglat(src='//images.igdb.com/igdb/image/upload/t_1080p/co2oyq.jpg' alt='')
               .text-room
@@ -214,7 +262,11 @@ meta(name='google-signin-client_id' content='804910218147-rg2qm78gfi0e5o1ddj99cd
                 h5        Descrizione:
                 p.mb-5.desc
                   |       In Watch Dogs: Legion, near future London is facing its downfall...unless you do something about it. Build a resistance, fight back, and give the city back to the people. It’s time to rise up.
-                         
+            
+              .leftcontainer
+                  a.twitter-timeline(href='https://twitter.com/watchdogsgame?ref_src=twsrc%5Etfw') Tweets by watchdogsgame
+                    script(async='' src='https://platform.twitter.com/widgets.js' charset='utf-8')
+
             h5.esptitl        Espansioni:
             .espansioni
               .img1
