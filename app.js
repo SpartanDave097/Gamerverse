@@ -4,7 +4,6 @@ var path = require('path');
 const mongoose = require('mongoose');            //dependencies for database
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
-var socket = require('socket.io');              //depedencies for WebSocket
 const dotenv = require('dotenv'); 
 const passport = require('passport');           //dependecies for authentication 
 const session = require('express-session');
@@ -75,22 +74,6 @@ app.use(function(err, req, res, next) {
   // render the error page
   res.status(err.status || 500);
   res.render('error');
-});
-
-//*** WebSocket creation to build chat
-const server = app.listen(8000, () => {
-  console.log("Listening on port 8000");
-});
-
-const io = socket(server);
-
-//*** Chat ServerSide
-io.on('connection', (socket) => {
-  console.log('A user connected')
-  socket.on('chatter', (message) => {
-    console.log('chatter: ', message)
-    io.emit('chatter', message)
-  });
 });
 
 module.exports = app;
