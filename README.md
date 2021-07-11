@@ -35,7 +35,7 @@ I requisiti per la corretta consegna del progetto sono:
 1. Node.js & NPM (Node Package Manager) https://nodejs.org/it/
 2. Docker https://docs.docker.com/get-docker/
 
-## Futuro Avvio
+## Avvio
 1. Occorre scaricare la cartella sulla propria macchina, utilizzando il comando ```git clone https://github.com/SpartanDave097/RetiCalcolatori2021.git```
 2. Rimanendo nel terminale, digitare ```docker-compose up -d``` (se si utilizza Windows lanciare Docker prima di questo comando)
 3. Aprire un browser su https://localhost
