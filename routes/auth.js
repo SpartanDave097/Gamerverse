@@ -1,35 +1,44 @@
-const express = require('express')
-const passport = require('passport')
-const router = express.Router()
+var express = require("express");
+var router = express.Router();
 
-// Auth with Google
-// GET /auth/google
-router.get('/google', passport.authenticate('google', {scope: ['profile'] }))
+var passportTwitter = require('../auth/twitter');
+var passportGoogle = require('../auth/google');
+var User = require('../models/User');
 
-// Google auth callback
-router.get('/google/callback', passport.authenticate('google', {failureRedirect: '/' }), (req, res) => {
-    res.redirect('/')
-})
+const {ensureAuthenticated} = require('../public/javascripts/authControl');
 
-// Logout user (da rivedere)
-// /auth/logout
-router.get('/logout', (req, res) => {
-    req.logout()
-    res.redirect('/')
-})
+//log-in routes
+router.get('/login', (req,res) =>{
+  res.render('login');
+});
 
-// Auth with Twitter 
-router.get('/twitter', passport.authenticate('twitter'));
-
-router.get('/logout', (req, res, next) => {
+//log-out routes
+router.get('/logout', (req,res) =>{
   req.logout();
-  res.redirect('/');
+  console.log("logout")
+  req.flash('success_msg', 'Logged out')
+  res.redirect('/login');
 });
 
-// Twitter auth callback
-router.get('/twitter/callback', 
-  passport.authenticate('twitter', { failureRedirect: '/' }), (req, res, next) => {
+/* TWITTER ROUTER */
+router.get('/twitter',
+  passportTwitter.authenticate('twitter'));
+
+router.get('/twitter/callback',
+  passportTwitter.authenticate('twitter', { failureRedirect: '/login' }),
+  function(req, res) {
     res.redirect('/');
-});
+  });
 
-module.exports = router
+/* GOOGLE ROUTER */
+router.get('/google',
+  passportGoogle.authenticate('google', { scope: ['profile', 'email'] }));
+
+router.get('/google/callback',
+  passportGoogle.authenticate('google', { failureRedirect: '/login' }),
+  function(req, res) {
+    res.redirect('/');
+  });
+
+
+module.exports = router;

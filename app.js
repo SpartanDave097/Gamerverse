@@ -6,23 +6,27 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 const dotenv = require('dotenv'); 
 const passport = require('passport');           //dependecies for authentication 
+const flash = require('connect-flash');
 const session = require('express-session');
 const connectDB = require('./config/db');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
-var authGoogle = require('./routes/auth');
+var loginRouter = require('./routes/login');
 var resultsRouter = require('./routes/results');
 var chatRouter = require('./routes/chat');
+var dashboardRouter = require('./routes/dashboard');
 
+
+var auth = require('./routes/auth');
 var app = express();
 
 // Load config
 dotenv.config({ path: './config/config.env' })
 
 // Passport config
-require('./config/passport')(passport)
-require('./config/passport1')(passport)
+var passportTwitter = require('./auth/twitter');
+var passportGoogle = require('./auth/google');
 
 // Connection DB
 connectDB()
@@ -34,9 +38,9 @@ if(process.env.NODE_ENV === 'development') {
 
 // Session
 app.use(session({
-  secret: 'key',
-  resave: false,
-  saveUninitialized: false
+  secret: 'game',
+  resave: true,
+  saveUninitialized: true
 
 }))
 
@@ -44,6 +48,9 @@ app.use(session({
 app.use(require('express-session')({ secret: process.env.SESSION_SECRET, resave: true, saveUninitialized: true }));
 app.use(passport.initialize());
 app.use(passport.session());
+
+// Connect flash
+app.use(flash());
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -56,9 +63,12 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
+app.use('/login', loginRouter);
 app.use('/results', resultsRouter);
 app.use('/users', usersRouter);
 app.use('/chat', chatRouter);
+app.use('/dashboard', dashboardRouter);
+app.use('/auth', auth);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

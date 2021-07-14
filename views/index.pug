@@ -54,19 +54,30 @@ nav#mainNav.navbar.navbar-expand-lg.bg-secondary.text-uppercase.fixed-top
     button.navbar-toggler.navbar-toggler-right.text-uppercase.font-weight-bold.bg-primary.text-white.rounded(type='button' data-toggle='collapse' data-target='#navbarResponsive' aria-controls='navbarResponsive' aria-expanded='false' aria-label='Toggle navigation')
       | Menu
       i.fas.fa-bars
-    li.nav-item.dropdown
-      a#navbarDropdown.nav-link.dropdown-toggle(href='#' role='button' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false')
-        | Accedi
-      .dropdown-menu(aria-labelledby='navbarDropdown')
-        a.dropdown-item(href='/auth/google')  Google 
-        a.dropdown-item(href='/auth/twitter')  Twitter 
-        .dropdown-divider
-        a.dropdown-item(href='/signup') Registrati
-        .dropdown-divider
-        a.dropdown-item(href='/chat') Chat 
+    - if(user)
+      li.nav-item.dropdown
+        a#navbarDropdown.nav-link.dropdown-toggle(href='#' role='button' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false')
+          | #{user.name}
+        .dropdown-menu(aria-labelledby='navbarDropdown')
+          a.dropdown-item(href='/auth/logout') Logout 
+          .dropdown-divider
+          a.dropdown-item(href='/chat') Chat 
+
+    - else 
+      li.nav-item.dropdown
+        a#navbarDropdown.nav-link.dropdown-toggle(href='#' role='button' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false')
+          | Accedi
+        .dropdown-menu(aria-labelledby='navbarDropdown')
+          a.dropdown-item(href='/auth/google')  Google 
+          a.dropdown-item(href='/auth/twitter')  Twitter 
+          .dropdown-divider
+          a.dropdown-item(href='/chat') Chat 
+
+  
 
 // Portfolio Section
 section#portfolio.page-section.portfolio
+  
   .container
     // Scritta in movimento
     .row.justify-content-center
@@ -93,6 +104,11 @@ section#portfolio.page-section.portfolio
             .portfolio-item-caption-content.text-center.text-white
               i.fas.fa-plus.fa-3x
           img.img-fluid(src='//images.igdb.com/igdb/image/upload/t_1080p/co1q1f.jpg' alt='')
+
+        .twitter-butt
+          p Condividi la tua esperienza con un 
+            a.twitter-share-button(href='https://twitter.com/intent/tweet' data-text="Cosa ne pensi di Red Dead Redemption 2 ? #gamerverse" data-url='https://tinyurl.com/gamerverse' data-size='large' data-show-count='false') Tweet #button
+            script(async='' src='https://platform.twitter.com/widgets.js' charset='utf-8')
       // Portfolio Item 2
       .col-md-6.col-lg-4.mb-5
         .portfolio-item.mx-auto(data-toggle='modal' data-target='#portfolioModal2')
@@ -100,6 +116,11 @@ section#portfolio.page-section.portfolio
             .portfolio-item-caption-content.text-center.text-white
               i.fas.fa-plus.fa-3x
           img.img-fluid(src='//images.igdb.com/igdb/image/upload/t_1080p/co2ed3.jpg' alt='')
+
+        .twitter-butt
+          p Condividi la tua esperienza con un 
+            a.twitter-share-button(href='https://twitter.com/intent/tweet'  data-text="Cosa ne pensi di Assassin's Creed Valhalla ? #gamerverse" data-url='https://tinyurl.com/gamerverse' data-size='large' data-show-count='false') Tweet #button
+            script(async='' src='https://platform.twitter.com/widgets.js' charset='utf-8')
       // Portfolio Item 3
       .col-md-6.col-lg-4.mb-5
         .portfolio-item.mx-auto(data-toggle='modal' data-target='#portfolioModal3')
@@ -107,6 +128,10 @@ section#portfolio.page-section.portfolio
             .portfolio-item-caption-content.text-center.text-white
               i.fas.fa-plus.fa-3x
           img.img-fluid(src='//images.igdb.com/igdb/image/upload/t_1080p/co2oyq.jpg' alt='')
+        .twitter-butt
+          p Condividi la tua esperienza con un 
+            a.twitter-share-button(href='https://twitter.com/intent/tweet'  data-text="Cosa ne pensi di Watch Dogs Legion ? #gamerverse" data-url='https://tinyurl.com/gamerverse' data-size='large' data-show-count='false') Tweet #button
+            script(async='' src='https://platform.twitter.com/widgets.js' charset='utf-8')
 #fb-root
 script(async='' defer='' crossorigin='anonymous' src='https://connect.facebook.net/it_IT/sdk.js#xfbml=1&version=v9.0&appId=2121529361321976&autoLogAppEvents=1' nonce='8USgjNY9')
 meta(name='google-signin-client_id' content='804910218147-rg2qm78gfi0e5o1ddj99cduk88m6s2gs.apps.googleusercontent.com')
@@ -165,6 +190,9 @@ meta(name='google-signin-client_id' content='804910218147-rg2qm78gfi0e5o1ddj99cd
             
             h5           Nessuna espansione
             
+            a.twitter-share-button(href='https://twitter.com/intent/tweet?text=Hello%20world' data-size='large')
+              | Tweet
+
             //bottone chiusura
             button.btn.btn-primary(data-dismiss='modal')
               i.fas.fa-times.fa-fw
@@ -295,8 +323,6 @@ footer.bg-white
         ul.list-unstyled.mb-0
           li.mb-2
             a.text-muted(href='#') Homepage
-          li.mb-2
-            a.text-muted(href='signup') Registrati
           li.mb-2
             a.text-muted(href='/chat') Chat
       .col-lg-2.col-md-6.mb-4.mb-lg-0

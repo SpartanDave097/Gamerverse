@@ -1,0 +1,72 @@
+doctype html
+head
+  meta(charset='utf-8')
+  meta(name='viewport' content='width=device-width, initial-scale=1, shrink-to-fit=no')
+  meta(name='description' content='')
+  meta(name='author' content='')
+  title GAMERVERSE
+  // Favicon
+  link(rel='icon' type='image/x-icon' href='./images/header-icon.png')
+  // Font Awesome icons (free version)
+  script(src='https://use.fontawesome.com/releases/v5.15.1/js/all.js')
+  // Google fonts
+  link(href='https://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css')
+  link(href='https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic' rel='stylesheet' type='text/css')
+  // CSS BOOTSTRAP
+  link(href='https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css' rel='stylesheet' type='text/css')
+  link(href='./stylesheets/style.css' rel='stylesheet' type='text/css')
+  // Custom CSS
+  link(href='./stylesheets/index.css' rel='stylesheet' type='text/css')
+  // JavaScript Bundle with Popper BOOTSTRAP
+  script(src='https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js')
+  // Custom JS
+  script(type='text/javascript' src='./javascripts/scripts.js')
+  script(type='text/javascript' src='./javascripts/index.js')
+  // Load the JS SDK asynchronously
+  script(async='' defer='' crossorigin='anonymous' src='https://connect.facebook.net/en_US/sdk.js')
+  // Load the Google Platform Library
+  script(src='https://apis.google.com/js/platform.js' async='' defer='')
+  // Bootstrap core JS
+  script(src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js')
+  script(src='https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js')
+  // Third party plugin JS
+  script(src='https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js')
+  // Contact form JS
+  // LogIn Js
+  script(type='text/javascript' src='./javascripts//login.js')
+  // Navigation
+nav#mainNav.navbar.navbar-expand-lg.bg-secondary.text-uppercase.fixed-top
+  .container
+    img.img-head(src='./images/header-icon.png' alt='')
+    a.navbar-brand.js-scroll-trigger(href='/') GAMERVERSE
+    button.navbar-toggler.navbar-toggler-right.text-uppercase.font-weight-bold.bg-primary.text-white.rounded(type='button' data-toggle='collapse' data-target='#navbarResponsive' aria-controls='navbarResponsive' aria-expanded='false' aria-label='Toggle navigation')
+      | Menu
+      i.fas.fa-bars
+    a.nav-item.nav-link(href='/signup') Registrati
+section#contact.page-section
+  .container
+    // Contact Section Heading
+    h2.page-section-heading.text-center.text-uppercase.text-secondary.mb-0 ACCESSO
+    // Icon Divider
+    .divider-custom
+      .divider-custom-line
+      .divider-custom-line
+      .divider-custom-line
+    .row
+      .col-lg-8.mx-auto
+        a.google-btn(href='/auth/twitter')
+          .google-icon-wrapper
+            img.google-icon(src='https://seeklogo.com/images/T/twitter-logo-A84FE9258E-seeklogo.com.png')
+          p.btn-text
+            b Sign in with twitter
+        a.google-btn(href='/auth/google')
+          .google-icon-wrapper
+            img.google-icon(src='https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg')
+          p.btn-text
+            b Sign in with google
+br
+br
+// Footer only Copyright 
+footer.bg-secondary.py-2
+  .container.text-center
+    p.text-light.font-weight.mb-0.py-2 &copy; 2021 Gamerverse
