@@ -32,6 +32,12 @@ I requisiti per la corretta consegna del progetto sono:
 * OAuth2
 * MongoDB
 
+## Schema
+<p align="center">
+  <img width="auto" height="auto" src="./public/images/Uff.png">
+</p>
+
+
 ## Prerequisiti per il corretto funzionamento
 1. Node.js & NPM (Node Package Manager) https://nodejs.org/it/
 2. Docker https://docs.docker.com/get-docker/
