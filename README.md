@@ -42,12 +42,7 @@ I requisiti per la corretta consegna del progetto sono:
 3. Aprire un browser su https://localhost
 4. Buona navigazione!
 
-Inizialmente il browser emetterà un avviso di ritorno nell'area protetta: questo perchè chiave e certificato di sicurezza del sito non sono verificate dalla CA (Certification Authority); ignorare l'avviso e procedere verso il sito
-
-In alternativa è possibile avviare l'app senza utilizzare Docker:
-1. Aprire un terminale e digitare ```npm install``` per installare le dipendenze necessarie
-2. Eseguire ```npm start```
-3. Aprire un browser su http://localhost:3000
+Inizialmente il browser emetterà un avviso di ritorno nell'area protetta: questo perchè chiave e certificato di sicurezza del sito non sono verificate dalla CA (Certification Authority); ignorare l'avviso e procedere verso il sito.
 
 ## API reference
 API utilizzata all'interno del progetto:
