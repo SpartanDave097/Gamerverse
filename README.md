@@ -37,10 +37,12 @@ I requisiti per la corretta consegna del progetto sono:
 2. Docker https://docs.docker.com/get-docker/
 
 ## Avvio
-1. Occorre scaricare la cartella sulla propria macchina, utilizzando il comando ```git clone https://github.com/SpartanDave097/RetiCalcolatori2021.git```
-2. Rimanendo nel terminale, digitare ```docker-compose up -d``` (se si utilizza Windows lanciare Docker prima di questo comando)
-3. Aprire un browser su https://localhost
-4. Buona navigazione!
+1. Occorre scaricare la cartella sulla propria macchina, utilizzando il comando ```git clone https://github.com/SpartanDave097/RetiCalcolatori2021.git``` da terminale
+2. Nel terminale, eseguire il comando ```sudo docker build gamerverse -t .```
+3. Rimanendo nel terminale, digitare ```sudo docker-compose up -d``` (se si utilizza Windows lanciare Docker prima di questo comando)
+4. Aprire un browser su https://localhost
+5. Se si vuole chiudere il sito, inserire il comando ```sudo docker-compose down```
+6. Buona navigazione!
 
 Inizialmente il browser emetterà un avviso di ritorno nell'area protetta: questo perchè chiave e certificato di sicurezza del sito non sono verificate dalla CA (Certification Authority); ignorare l'avviso e procedere verso il sito.
 
