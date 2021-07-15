@@ -60,20 +60,29 @@ nav#mainNav.navbar.navbar-expand-lg.bg-secondary.text-uppercase.fixed-top
     button.navbar-toggler.navbar-toggler-right.text-uppercase.font-weight-bold.bg-primary.text-white.rounded(type='button' data-toggle='collapse' data-target='#navbarResponsive' aria-controls='navbarResponsive' aria-expanded='false' aria-label='Toggle navigation')
       | Menu
       i.fas.fa-bars
-    li.nav-item.dropdown
-      a#navbarDropdown.nav-link.dropdown-toggle(href='#' role='button' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false')
-        | Menù
-      .dropdown-menu(aria-labelledby='navbarDropdown')
-        a.dropdown-item(href='/auth/google')  Google 
-        a.dropdown-item(href='/auth/twitter')  Twitter 
-        .dropdown-divider
-        a.dropdown-item(href='/signup') Registrati
-        .dropdown-divider
-        a.dropdown-item(href='/chat') Chat 
+    - if(user)
+      li.nav-item.dropdown
+        a#navbarDropdown.nav-link.dropdown-toggle(href='#' role='button' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false')
+          | #{user.name}
+        .dropdown-menu(aria-labelledby='navbarDropdown')
+          a.dropdown-item(href='/auth/logout') Logout 
+          .dropdown-divider
+          a.dropdown-item(href='/chat') Chat 
+
+    - else 
+      li.nav-item.dropdown
+        a#navbarDropdown.nav-link.dropdown-toggle(href='#' role='button' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false')
+          | Accedi
+        .dropdown-menu(aria-labelledby='navbarDropdown')
+          a.dropdown-item(href='/auth/google')  Google 
+          a.dropdown-item(href='/auth/twitter')  Twitter 
+          .dropdown-divider
+          a.dropdown-item(href='/chat') Chat 
+          
 // Portfolio Section
 
 //mixin per creare codice
-mixin portfolioItem(immagineGioco,c)
+mixin portfolioItem(immagineGioco,nomeGioco,c)
   - var image = "//images.igdb.com/igdb/image/upload/t_1080p/" + immagineGioco + ".jpg";
   .col-md-6.col-lg-4.mb-5 
     .portfolio-item.mx-auto(data-toggle='modal' data-target= "#portfolioModal" + c)
@@ -81,6 +90,11 @@ mixin portfolioItem(immagineGioco,c)
         .portfolio-item-caption-content.text-center.text-white
           i.fas.fa-plus.fa-3x
       img.img-fluid(src= ""+image, alt='')
+        
+    .twitter-butt
+      p Condividi la tua esperienza con un 
+        a.twitter-share-button(href='https://twitter.com/intent/tweet'  data-text="Cosa ne pensi di " + nomeGioco + "? #gamerverse" data-url='https://tinyurl.com/gamerverse' data-size='large' data-show-count='false') Tweet #button
+        script(async='' src='https://platform.twitter.com/widgets.js' charset='utf-8')
 
 //Modal
 mixin portfolioModal(gioco,d)
@@ -214,7 +228,7 @@ section#portfolio.page-section.portfolio
       // Portfolio Item i
       - var a = 0;
       each item in fileJson1
-        +portfolioItem(item.cover.image_id,a)
+        +portfolioItem(item.cover.image_id,item.name,a)
         - a++
 
 // Portfolio Modals
@@ -243,8 +257,6 @@ footer.bg-white
         ul.list-unstyled.mb-0
           li.mb-2
             a.text-muted(href='#') Homepage
-          li.mb-2
-            a.text-muted(href='signup') Registrati
           li.mb-2
             a.text-muted(href='/chat') Chat
       .col-lg-2.col-md-6.mb-4.mb-lg-0

@@ -42,17 +42,18 @@ nav#mainNav.navbar.navbar-expand-lg.bg-secondary.text-uppercase.fixed-top
     button.navbar-toggler.navbar-toggler-right.text-uppercase.font-weight-bold.bg-primary.text-white.rounded(type='button' data-toggle='collapse' data-target='#navbarResponsive' aria-controls='navbarResponsive' aria-expanded='false' aria-label='Toggle navigation')
       | Menu
       i.fas.fa-bars
-    a.nav-item.nav-link(href='/signup') Registrati
+    a.nav-item.nav-link
+
 section#contact.page-section
   .container
     // Contact Section Heading
-    h2.page-section-heading.text-center.text-uppercase.text-secondary.mb-0 ACCESSO
+    h2.loginhead.page-section-heading.text-center.text-uppercase.text-secondary.mb-0 ACCESSO
     // Icon Divider
     .divider-custom
       .divider-custom-line
       .divider-custom-line
       .divider-custom-line
-    .row
+    .row.loghi
       .col-lg-8.mx-auto
         a.google-btn(href='/auth/twitter')
           .google-icon-wrapper
@@ -66,7 +67,53 @@ section#contact.page-section
             b Sign in with google
 br
 br
-// Footer only Copyright 
-footer.bg-secondary.py-2
-  .container.text-center
+
+
+// Footer
+footer.bg-white
+  .container.py-5
+    .row.py-4
+      .col-lg-4.col-md-6.mb-4.mb-lg-0
+        h6.text-uppercase.font-weight-bold.mb-4 Gamerverse
+        p.font-italic.text-muted
+          | Siamo un portale dedicato alla ricerca di videogiochi 
+          | e alla creazione di una community online
+        p.font-italic.text-muted
+          | Sito realizzato da Marco Collalti, Lorenzo Lancia, Davide Massimei
+          | per il progetto di Reti di Calcolatori
+      .col-lg-2.col-md-6.mb-4.mb-lg-0
+        h6.text-uppercase.font-weight-bold.mb-4 Menù
+        ul.list-unstyled.mb-0
+          li.mb-2
+            a.text-muted(href='#') Homepage
+          li.mb-2
+            a.text-muted(href='/chat') Chat
+      .col-lg-2.col-md-6.mb-4.mb-lg-0
+        h6.text-uppercase.font-weight-bold.mb-4 Servizi
+        ul.list-unstyled.mb-0
+          li.mb-2 
+            i.fas.fa-search
+            a.text-muted  Ricerca
+          li.mb-2 
+            i.fas.fa-info-circle
+            a.text-muted  Informazioni
+          li.mb-2 
+            i.fas.fa-puzzle-piece
+            a.text-muted  Espansioni
+          li.mb-2
+            i.fas.fa-laptop
+            a.text-muted  Piattaforme
+      .col-lg-4.col-md-6.mb-lg-0
+        h6.text-uppercase.font-weight-bold.mb-4 Newsletter
+        p.text-muted.mb-4 Iscriviti alla newsletter per rimaner sempre aggiornato su Gamerverse.
+        .p-1.rounded.border
+          .input-group
+            input.form-control.border-0.shadow-0(type='email' placeholder='Enter your email address' aria-describedby='button-addon1')
+            .input-group-append
+              button#button-addon1.btn.btn-link(type='submit')
+                i.fa.fa-paper-plane
+  // Copyrights
+  .bg-secondary.py-2
+    .container.text-center
+      p.text-light.font-weight.mb-0.py-2 &copy; 2021 Gamerverse
     p.text-light.font-weight.mb-0.py-2 &copy; 2021 Gamerverse

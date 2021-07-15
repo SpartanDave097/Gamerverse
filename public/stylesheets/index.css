@@ -3,6 +3,14 @@
     padding: 0;
 }
 
+.loghi{
+  margin-top: 15%;
+}
+
+.loginhead{
+  margin-top: 5%;
+}
+
 .img-head{
     max-width: 50px;
     margin-right: 5%;
@@ -32,6 +40,15 @@
 }
 
 /* oggetti portfolio */
+.twitter-butt {
+  align-items: center;
+  text-align: center;
+  padding-top: 5px;
+}
+
+.twitter-butt p{
+  padding-bottom: 5px;
+}
 
 .portfolio .portfolio-item {
   margin-top: 20%;
@@ -309,7 +326,7 @@
   text-align-last: center;
   position: relative;
   font-size: 2.8em;
-  margin-right: 20%;
+  margin-right: 25%;
   font-weight: bold;
   width: calc(100% - 50%);
   font-family: "Montserrat", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";

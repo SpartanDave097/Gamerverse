@@ -13,9 +13,16 @@ head
   link(href='./stylesheets/index.css' rel='stylesheet' type='text/css')
   link(href='./stylesheets/style.css' rel='stylesheet' type='text/css')
   //custom script
-  script(type='text/javascript' src='./socket.io/socket.io.js')
+  //script(src='https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.2.0/socket.io.js')
+  script(type='text/javascript' src='/socket.io/socket.io.js')
+
+    // Bootstrap core JS
+  script(src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js')
+  script(src='https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js')
+  
   title GAMERVERSE
 
+// Navigation
 nav#mainNav.navbar.navbar-expand-lg.bg-secondary.text-uppercase.fixed-top
   .container
     img.img-head(src='./images/header-icon.png' alt='')
@@ -23,18 +30,14 @@ nav#mainNav.navbar.navbar-expand-lg.bg-secondary.text-uppercase.fixed-top
     button.navbar-toggler.navbar-toggler-right.text-uppercase.font-weight-bold.bg-primary.text-white.rounded(type='button' data-toggle='collapse' data-target='#navbarResponsive' aria-controls='navbarResponsive' aria-expanded='false' aria-label='Toggle navigation')
       | Menu
       i.fas.fa-bars
-    li.nav-item.dropdown
-      a#navbarDropdown.nav-link.dropdown-toggle(href='#' role='button' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false')
-        | Accedi
-      .dropdown-menu(aria-labelledby='navbarDropdown')
-        a.dropdown-item(href='/auth/google')  Google 
-        a.dropdown-item(href='/auth/twitter')  Twitter 
-        .dropdown-divider
-        a.dropdown-item(href='/signup') Registrati
-        .dropdown-divider
-        a.dropdown-item(href='/chat') Chat
-        // Portfolio Section
-- var user = "DAVIMASS";
+    - if(user)
+      li.nav-item.dropdown
+        a#navbarDropdown.nav-link.dropdown-toggle(href='#' role='button' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false')
+          | #{user.name}
+        .dropdown-menu(aria-labelledby='navbarDropdown')
+          a.dropdown-item(href='/auth/logout') Logout 
+
+// Portfolio Section
 section#portfolio.page-section.portfolio
   .container-chat       
     #chat-app
@@ -51,8 +54,10 @@ section#portfolio.page-section.portfolio
                 #message-container.field.has-addons
                   .row_column
                     .col-sm.left_form
-                      // ****INSERISCI value="#{user.firstName}" IN INPUT SOTTO *****
-                      input#name.input.utente_input(type='text' value = user readonly='readonly')
+                      -if (user)
+                         input#name.input.utente_input(type='text' value = user.name  readonly='readonly')
+                      -else
+                        input#name.input.utente_input(type='text' value="ciosba" readonly='readonly')
                     .col-sm.right_form
                       input#message.input(type='text' placeholder='Scrivi un messaggio...' min='1' required='required')
                       button#invia(type='submit')
@@ -62,7 +67,7 @@ section#portfolio.page-section.portfolio
               $('form').submit(function() {
               const name = $('#name').val();
               const message = $('#message').val();
-              socket.emit('chatter', `${name} : ${message}`); //This method is responsible for sending messages
+              socket.emit('chatter', `${name} : ${message}`);  //This method is responsible for sending messages
               $('#message').val('');
               return false;
               });
@@ -85,7 +90,7 @@ footer.bg-white
         h6.text-uppercase.font-weight-bold.mb-4 Gamerverse
         p.font-italic.text-muted
           | Siamo un portale dedicato alla ricerca di videogiochi 
-          |  ed è disponibile una chat per gli altri utenti connessi
+          | e alla creazione di una community online
       .col-lg-2.col-md-6.mb-4.mb-lg-0
         h6.text-uppercase.font-weight-bold.mb-4 Menù
         ul.list-unstyled.mb-0
@@ -123,3 +128,4 @@ footer.bg-white
   .bg-secondary.py-2
     .container.text-center
       p.text-light.font-weight.mb-0.py-2 &copy; 2021 Gamerverse
+
