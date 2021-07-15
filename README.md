@@ -30,6 +30,7 @@ I requisiti per la corretta consegna del progetto sono:
 * API YouTube
 * OpenSSL
 * OAuth2
+* MongoDB
 
 ## Prerequisiti per il corretto funzionamento
 1. Node.js & NPM (Node Package Manager) https://nodejs.org/it/
