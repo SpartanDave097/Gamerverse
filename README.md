@@ -31,6 +31,7 @@ I requisiti per la corretta consegna del progetto sono:
 * OpenSSL
 * OAuth2
 * MongoDB
+* PostMan
 
 ## Schema
 <p align="center">
