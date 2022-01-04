@@ -9,16 +9,6 @@ Progetto per il corso 2020/21 di Reti di Calcolatori, tenuto dal prof. Andrea Vi
 ## Informazioni
 GamerVerse è una piattaforma dedicata a coloro che vogliono avvicinarsi o approfondire il mondo dei videogiochi. Grazie alla sua semplicità, è possibile cercare informazioni su qualsiasi gioco, ottenendo varie informazioni al riguardo, tra cui trama, tweets e trailer. È possibile registrarsi sul nostro sito per entrare in contatto con una grande community e condividere le proprie opinioni con altri giocatori.
 
-## Requisiti
-I requisiti per la corretta consegna del progetto sono:
-- Il servizio REST che implementate (lo chiameremo SERV) deve offrire all'esterno delle API documentate con swagger per esempio
-- SERV si deve interfacciare con almeno due servizi REST “esterni”, cioè non su localhost (e.g. google maps)
-- Almeno uno dei servizi REST esterni deve essere “commerciale” (es: twitter, google, facebook, pubnub, parse, firbase etc)
-- Almeno uno dei servizi REST esterni deve richiedere oauth (e.g. google calendar)
-- Si devono usare Websocket e/o AMQP (o simili es MQTT)
-- Il progetto deve essere su GIT (GITHUB, GITLAB...) e documentato don un README che illustri almeno scopo del progetto, tecnologie usate, come installarlo, come far girare i casi di test
-- Le API REST implementate in SERV devono essere documentate su GIT e devono essere validate con un caso di test
-
 ## Tecnologie
 * Docker
 * NGINX
